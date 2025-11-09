@@ -1,12 +1,6 @@
-import {
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
+import { Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import "./app.css";
-
 
 export function Layout({ children }) {
   return (
@@ -14,6 +8,12 @@ export function Layout({ children }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          href="https://cdn.jsdelivr.net/npm/daisyui@5"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <Meta />
       </head>
       <body>
@@ -28,4 +28,3 @@ export function Layout({ children }) {
 export default function App() {
   return <Outlet />;
 }
-
