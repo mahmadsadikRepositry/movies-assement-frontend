@@ -1,43 +1,13 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../Components/MovieCard";
 import MovieDetailsModal from "../Components/MovieDetails";
+import useMovies from "../hooks/useMovies";
 
 function Welcome() {
-  const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setMovies([]);
-
-    const fetchMovies = async () => {
-      setLoading(true);
-
-      try {
-        let url = "";
-        const BASE_URL =
-          import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-
-        url = `${BASE_URL}/movie/trending/day?pageNo=${page}`;
-
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("Failed to fetch movies");
-
-        const data = await res.json();
-        console.log("Backend movie data:", data);
-
-        setMovies(data.results || []);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMovies();
-  }, [page]);
+  const { movies, totalPages, loading } = useMovies(1);
 
   const openModal = async (movieId) => {
     setError(null);

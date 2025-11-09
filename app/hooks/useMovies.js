@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
-import { MovieService } from "../services/movieService";
+import { MovieService } from "../service/movieService";
 
-export const useMovies = (view, page) => {
+const useMovies = (page) => {
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (view === "favorites") {
-      setMovies([]);
-      return;
-    }
-
     const fetchData = async () => {
       setLoading(true);
       setError(null);
@@ -29,7 +24,9 @@ export const useMovies = (view, page) => {
     };
 
     fetchData();
-  }, [view, page]);
+  }, [page]);
 
   return { movies, totalPages, loading, error };
 };
+
+export default useMovies;
