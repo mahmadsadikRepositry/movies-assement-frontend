@@ -8,6 +8,12 @@ The frontEnd is deployed on **Vercel**:
 [https://movies-assement-frontend.vercel.app/](https://movies-assement-frontend.vercel.app/)
 ---
 
+## Project setup
+
+```bash
+$ npm install
+```
+
 # Environment Setup
 
 Please refer to the `.example.env` file to cofigure Enviroment Varialbles.
